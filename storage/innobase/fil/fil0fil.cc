@@ -5494,6 +5494,10 @@ struct	Check {
 		Check	check;
 		ut_list_validate(space->chain, check);
 		ut_a(space->size == check.size);
+		ut_ad(space->id != TRX_SYS_SPACE
+		      || space == fil_system->sys_space);
+		ut_ad(space->id != SRV_TMP_SPACE_ID
+		      || space == fil_system->temp_space);
 		return(check.n_open);
 	}
 };
